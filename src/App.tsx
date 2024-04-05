@@ -1,5 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Moon, Sun } from "grommet-icons";
+import axios from 'axios';
 import {
   Box,
   Button,
@@ -17,7 +18,7 @@ import {
   PageHeader,
   Paragraph,
   ResponsiveContext,
-  Text,
+  Text
 } from "grommet";
 import { deepMerge } from "grommet/utils";
 
@@ -64,8 +65,44 @@ const CardTemplate = ({ title }: any) => {
   );
 };
 
+
+
 const App = () => {
   const [dark, setDark] = useState(false);
+  const [batterie, setBatterie] = useState([{}]);
+
+  const getBatteria = () => {
+    axios.get(`http://localhost:8090/garaCoppia/batterie2`,  {headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Credentials': 'true'}
+    })
+    .then(res => {
+      setBatterie(res.data);
+      console.log(res)
+    })
+  //   const res: any[] = [
+  //     {name: 'batteria1'},
+  //     {name: 'batteria2'},
+  //     {name: 'batteria3'},
+  //     {name: 'batteria4'},
+  //     {name: 'batteria5'},
+  //     {name: 'batteria6'},
+  //     {name: 'batteria7'},
+  //     {name: 'batteria8'},
+  //     {name: 'batteria9'},
+  //     {name: 'batteria10'},
+  //     {name: 'batteria11'},
+  //     {name: 'batteria12'},
+  //     {name: 'batteria13'},
+  //     {name: 'batteria14'},
+  //   ]
+  //   setTimeout(() => setBatterie(res), 3000)
+  };
+
+  useEffect(()=>{
+    getBatteria()
+  }, [])
 
   return (
     <Grommet theme={theme} full themeMode={dark ? "dark" : "light"}>
@@ -93,9 +130,13 @@ const App = () => {
         <PageContent>
           <PageHeader title="Welcome to Grommet!" />
           <Grid columns="medium" gap="large" pad={{ bottom: "large" }}>
-            <CardTemplate title={"Card 1"} />
-            <CardTemplate title={"Card 2"} />
-            <CardTemplate title={"Card 3"} />
+            {batterie.map((batteria: any) => (
+              <>
+                <CardTemplate title={batteria.nome} />
+                <CardTemplate title={batteria.nome} />
+                <CardTemplate title={batteria.nome} />
+              </>
+            ))}
           </Grid>
         </PageContent>
       </Page>
