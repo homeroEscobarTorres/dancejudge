@@ -36,6 +36,14 @@ const theme = deepMerge(grommet, {
   },
 });
 
+interface Batteria {
+  eliminato: string;
+  id: number;
+  numeroBatterie: 1;
+  selezionato: any;
+  userCoppia: any
+}
+
 const AppBar = (props: any) => (
   <Header
     background="brand"
@@ -47,35 +55,33 @@ const AppBar = (props: any) => (
 
 const App = () => {
   const [dark, setDark] = useState(false);
-  const [batterie, setBatterie] = useState([{}]);
+  const [batterie, setBatterie] = useState([]);
 
   const getBatteria = () => {
-    axios.get(`https://pokeapi.co/api/v2/pokemon`,  {headers: {
+    axios.get(`http://192.168.1.125:8090/garaCoppia/batterie2`,  {headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': '*',
       'Access-Control-Allow-Credentials': 'true'}
     })
-    .then(res => {
-      console.log(res.data.results)
-      setBatterie(res.data.results);
+    .then((res: any) => {
+      const batterie = res.data.map((bat: any) => bat.numeroBatteria)
+      console.log(batterie)
+      setBatterie(res.data);
     })
-  //   const res: any[] = [
-  //     {name: 'batteria1'},
-  //     {name: 'batteria2'},
-  //     {name: 'batteria3'},
-  //     {name: 'batteria4'},
-  //     {name: 'batteria5'},
-  //     {name: 'batteria6'},
-  //     {name: 'batteria7'},
-  //     {name: 'batteria8'},
-  //     {name: 'batteria9'},
-  //     {name: 'batteria10'},
-  //     {name: 'batteria11'},
-  //     {name: 'batteria12'},
-  //     {name: 'batteria13'},
-  //     {name: 'batteria14'},
-  //   ]
-  //   setTimeout(() => setBatterie(res), 3000)
+  };
+
+  const postBatteria = () => {
+    axios.post(`http://192.168.1.125:8090/garaCoppia/selezionaCoppie`,  {headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Credentials': 'true'}
+    },{
+
+    })
+    .then(res => {
+      console.log(res.data)
+      setBatterie(res.data);
+    })
   };
 
   useEffect(()=>{
@@ -122,8 +128,8 @@ const App = () => {
         </AppBar>
         <PageContent>
           <PageHeader title="Start judging" />
-            {batterie.map((batteria: any) => (
-              <CardTemplate index={batteria.name} title={batteria.name} />
+            {batterie?.map((batteria: any) => (
+              <CardTemplate index={batteria.id} title={batteria.id} />
             ))}
         </PageContent>
       </Page>
