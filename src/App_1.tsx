@@ -20,7 +20,6 @@ import {
   ResponsiveContext,
   Text
 } from "grommet";
-import CardTemplate from "./components/cardTemplate";
 import { deepMerge } from "grommet/utils";
 
 const theme = deepMerge(grommet, {
@@ -44,6 +43,29 @@ const AppBar = (props: any) => (
     {...props}
   />
 );
+
+const CardTemplate = ({ title }: any) => {
+  const size = useContext(ResponsiveContext);
+  return (
+    <Card height="small" width="small">
+      <CardHeader pad="small">
+        <Heading level={2} margin="none">
+          {title}
+        </Heading>
+      </CardHeader>
+      <CardBody pad="small">
+        <Paragraph maxLines={size === "small" ? 3 : undefined}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+          porttitor non nulla ac vehicula. Aliquam erat volutpat. Mauris auctor
+          faucibus est at mattis. Aliquam a enim ac nisi aliquam consectetur et
+          ac velit. Mauris ut imperdiet libero.
+        </Paragraph>
+      </CardBody>
+    </Card>
+  );
+};
+
+
 
 const App = () => {
   const [dark, setDark] = useState(false);
@@ -82,21 +104,6 @@ const App = () => {
     getBatteria()
   }, [])
 
-  // Stile per il bottone "SEND"
-  const sendButtonStyle: React.CSSProperties = {
-    position: 'absolute',
-    bottom: '20px', // Distanza dal basso
-    right: '20px', // Distanza da destra
-  };
-
-  // Funzione per inviare i dati (simulazione)
-  const handleSendData = () => {
-    // Qui puoi implementare la logica per inviare i dati
-    // console.log('Dati inviati:', selectedCards);
-    // // Resetta la selezione dopo l'invio dei dati
-    // setSelectedCards([]);
-  };
-
   return (
     <Grommet theme={theme} full themeMode={dark ? "dark" : "light"}>
       <Page>
@@ -123,16 +130,11 @@ const App = () => {
         <PageContent>
           <PageHeader title="Start judging" />
             {batterie.map((batteria: any) => (
-              <CardTemplate index={batteria.name} title={batteria.name} />
+              <CardTemplate title={batteria.name} />
             ))}
         </PageContent>
       </Page>
-      <Button
-        label="SEND"
-        onClick={handleSendData}
-        primary
-        style={sendButtonStyle}
-      />
+      <CardFooter></CardFooter>
     </Grommet>
   );
 };
