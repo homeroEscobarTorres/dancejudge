@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Card, Button, Typography, notification} from 'antd';
+import {Card, Button, Typography, notification, Badge} from 'antd';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
@@ -385,12 +385,14 @@ const cardData = {
 const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
   const [valueCards, setValueCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
+  const [maxVotes, setMaxVotes] = useState(0);
+  const [titleCard, setTitleCard] = useState('');
   const navigate = useNavigate();
 
   const handleCardClick = (index) => {
     if (selectedCards.includes(index)) {
       setSelectedCards(selectedCards.filter((cardIndex) => cardIndex !== index));
-    } else if (selectedCards.length < 10) {
+    } else if (selectedCards.length < maxVotes) {
       setSelectedCards([...selectedCards, index]);
     }
   };
@@ -422,20 +424,29 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
         console.log(batterie);
         sendDataToParent(false);
         setValueCards(batterie['1']);
+        calcMaxVotes(batterie['1'].length);
       }
     }, 3000);
+  };
+
+  const calcMaxVotes = (totalCouples) => {
+    setMaxVotes(Math.floor(totalCouples / 2));
   };
 
   const groupElementsByBatteryNumber = (dataArray) => {
     const groupedData = {};
 
+    let batteryNumber = 0;
     dataArray.forEach((item) => {
-      const batteryNumber = item.numeroBatteria;
+      batteryNumber = item.numeroBatteria;
+
       if (!groupedData[batteryNumber]) {
         groupedData[batteryNumber] = [];
       }
       groupedData[batteryNumber].push(item);
     });
+
+    setTitleCard(`You're judging battery number ${batteryNumber}`);
 
     // const groupedArrays = {};
     // for (const batteryNumber in groupedData) {
@@ -497,20 +508,23 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
     <div style={{display: 'flex', flexWrap: 'wrap'}}>
       <Title level={1}>Hello, {name}.</Title>
       <Title level={3}>Choose the couples you like most:</Title>
-      <Card title={'BATERIA NUMBER'}>
-        {valueCards.map((item) => (
-          <Card.Grid
-            key={item?.userCoppia?.id}
-            style={getCardStyle(item?.userCoppia?.id)}
-            onClick={() => handleCardClick(item?.userCoppia?.id)}
-          >
-            {item?.userCoppia?.id}
-          </Card.Grid>
-        ))}
-      </Card>
+      <Badge count={maxVotes - selectedCards.length}>
+        <Card title={titleCard}>
+          {valueCards.map((item) => (
+            <Card.Grid
+              key={item?.userCoppia?.id}
+              style={getCardStyle(item?.userCoppia?.id)}
+              onClick={() => handleCardClick(item?.userCoppia?.id)}
+            >
+              {item?.userCoppia?.id}
+            </Card.Grid>
+          ))}
+        </Card>
+      </Badge>
+
       <Button
         type='primary'
-        disabled={selectedCards?.length < 10}
+        disabled={selectedCards?.length < maxVotes}
         style={{position: 'fixed', bottom: 20, right: 20}}
         onClick={() => handleRateClick()}
       >

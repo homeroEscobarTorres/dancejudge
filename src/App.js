@@ -25,6 +25,7 @@ const App = () => {
 
   const updateNameState = (dataFromChild) => {
     setName(dataFromChild);
+    console.log(dataFromChild);
   };
 
   return (
@@ -37,11 +38,15 @@ const App = () => {
     >
       <Router>
         <Layout style={{minHeight: '100vh'}}>
-          <HeaderComponent onUpdatePrimaryColor={updatePrimaryState}></HeaderComponent>
+          <HeaderComponent
+            onUpdatePrimaryColor={updatePrimaryState}
+            onUpdateName={updateNameState}
+            name={name}
+          ></HeaderComponent>
           <Spin spinning={loading}>
             <Content style={{padding: '20px'}}>
               <Routes>
-                <Route exact path='/qrcode' element={<QRCodePage />} />
+                <Route exact path='/' element={<QRCodePage />} />
                 <Route
                   exact
                   path='/login'
