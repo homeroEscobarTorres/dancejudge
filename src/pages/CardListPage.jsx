@@ -3,12 +3,13 @@ import {Card, Button, Typography, notification} from 'antd';
 import axios from 'axios';
 
 const gridStyle = {
-  width: '50%',
+  width: '25%',
   textAlign: 'center',
   display: 'flex',
   justifyContent: 'center',
   fontWeight: 'bold',
-  fontSize: '28px',
+  fontSize: '18px',
+  margin: '10px',
 };
 const {Title} = Typography;
 
@@ -492,7 +493,7 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
     <div style={{display: 'flex', flexWrap: 'wrap'}}>
       <Title level={1}>Hello, {name}.</Title>
       <Title level={3}>Choose the couples you like most:</Title>
-      <Card title={'BATTERIA NUMBER'}>
+      <Card title={'BATERIA NUMBER'}>
         {valueCards.map((item) => (
           <Card.Grid
             key={item?.userCoppia?.id}

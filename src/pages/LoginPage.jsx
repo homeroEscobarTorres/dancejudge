@@ -1,7 +1,9 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
-import {Form, Input, Button} from 'antd';
+import {Form, Input, Button, Typography} from 'antd';
 import axios from 'axios';
+
+const {Title} = Typography;
 
 const LoginPage = ({onUpdateLoading, onUpdateName}) => {
   const navigate = useNavigate();
@@ -41,19 +43,23 @@ const LoginPage = ({onUpdateLoading, onUpdateName}) => {
   };
 
   return (
-    <Form name='login-form' onFinish={onFinish}>
-      <Form.Item name='name' rules={[{required: true, message: 'Name'}]}>
-        <Input placeholder='Name' />
-      </Form.Item>
-      <Form.Item name='surname' rules={[{required: true, message: 'Surname'}]}>
-        <Input placeholder='Surname' />
-      </Form.Item>
-      <Form.Item>
-        <Button type='primary' htmlType='submit'>
-          Login
-        </Button>
-      </Form.Item>
-    </Form>
+    <>
+      <Title level={1}>Are you ready to choose the best couples you've ever seen? 🤩</Title>
+      <Title level={2}>Identify yourself and start judging.</Title>
+      <Form name='login-form' onFinish={onFinish}>
+        <Form.Item name='name' rules={[{required: true, message: 'Name'}]}>
+          <Input placeholder='Name' />
+        </Form.Item>
+        <Form.Item name='surname' rules={[{required: true, message: 'Surname'}]}>
+          <Input placeholder='Surname' />
+        </Form.Item>
+        <Form.Item>
+          <Button type='primary' htmlType='submit'>
+            Login
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   );
 };
 
