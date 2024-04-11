@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Card, Button, Typography, notification} from 'antd';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 const gridStyle = {
@@ -384,6 +385,7 @@ const cardData = {
 const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
   const [valueCards, setValueCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
+  const navigate = useNavigate();
 
   const handleCardClick = (index) => {
     if (selectedCards.includes(index)) {
@@ -485,6 +487,8 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
           description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
           duration: 0,
         });
+        sendDataToParent(false);
+        navigate('/info');
       }
     }, 3000);
   };

@@ -5,6 +5,8 @@ import './App.less';
 import HeaderComponent from './components/HeaderComponent';
 import CardListPage from './pages/CardListPage';
 import LoginPage from './pages/LoginPage';
+import InfoPage from './pages/InfoPage';
+import QRCodePage from './pages/QRCodePage';
 
 const {Content} = Layout;
 
@@ -39,9 +41,10 @@ const App = () => {
           <Spin spinning={loading}>
             <Content style={{padding: '20px'}}>
               <Routes>
+                <Route exact path='/qrcode' element={<QRCodePage />} />
                 <Route
                   exact
-                  path='/'
+                  path='/login'
                   element={<LoginPage onUpdateLoading={updateLoadingState} onUpdateName={updateNameState} />}
                 />
                 <Route
@@ -49,6 +52,10 @@ const App = () => {
                   element={
                     <CardListPage onUpdateLoading={updateLoadingState} primaryColor={primaryColor} name={name} />
                   }
+                />
+                <Route
+                  path='/info'
+                  element={<InfoPage onUpdateLoading={updateLoadingState} primaryColor={primaryColor} name={name} />}
                 />
               </Routes>
             </Content>

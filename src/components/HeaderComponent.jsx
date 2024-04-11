@@ -15,7 +15,7 @@ const HeaderComponent = ({onUpdatePrimaryColor}) => {
   };
 
   const logout = () => {
-    navigate('/');
+    navigate('/login');
   };
 
   return (
