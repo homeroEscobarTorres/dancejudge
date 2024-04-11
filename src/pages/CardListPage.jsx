@@ -425,6 +425,7 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
         sendDataToParent(false);
         setValueCards(batterie['1']);
         calcMaxVotes(batterie['1'].length);
+        setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
       }
     }, 3000);
   };
@@ -436,18 +437,14 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
   const groupElementsByBatteryNumber = (dataArray) => {
     const groupedData = {};
 
-    let batteryNumber = 0;
     dataArray.forEach((item) => {
-      batteryNumber = item.numeroBatteria;
+      const batteryNumber = item.numeroBatteria;
 
       if (!groupedData[batteryNumber]) {
         groupedData[batteryNumber] = [];
       }
       groupedData[batteryNumber].push(item);
     });
-
-    setTitleCard(`You're judging battery number ${batteryNumber}`);
-
     // const groupedArrays = {};
     // for (const batteryNumber in groupedData) {
     //   groupedArrays[batteryNumber] = [];
