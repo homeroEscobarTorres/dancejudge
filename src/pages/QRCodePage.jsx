@@ -17,7 +17,7 @@ const QRCodePage = ({}) => {
       <div style={qrCodeContainer}>
         <Image width={200} src={QRCode} />
       </div>
-      <Text keyboard>Created By Karim and Homero</Text>
+      <Text keyboard>Created and Develop By Karim and Homero</Text>
     </>
   );
 };
