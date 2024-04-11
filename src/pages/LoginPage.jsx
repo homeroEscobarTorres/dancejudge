@@ -21,7 +21,7 @@ const LoginPage = ({onUpdateLoading, onUpdateName}) => {
     //     },
     //   })
     //   .then((res) => {
-    //     if (res.data) {
+    //     if (res?.data?.id) {
     //       sendDataToParent(false, values.name);
     //       navigate('/card-list');
     //     }
