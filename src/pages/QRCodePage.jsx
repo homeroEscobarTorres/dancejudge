@@ -1,4 +1,4 @@
-import {Image} from 'antd';
+import {Image, Typography} from 'antd';
 import React from 'react';
 import QRCode from '../assets/img/qrcode.png';
 
@@ -9,11 +9,16 @@ const qrCodeContainer = {
   height: '80vh',
 };
 
+const {Text} = Typography;
+
 const QRCodePage = ({}) => {
   return (
-    <div style={qrCodeContainer}>
-      <Image width={200} src={QRCode} />
-    </div>
+    <>
+      <div style={qrCodeContainer}>
+        <Image width={200} src={QRCode} />
+      </div>
+      <Text keyboard>Created By Karim and Homero</Text>
+    </>
   );
 };
 
