@@ -414,7 +414,7 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
       })
       .then((res) => {
         if (res.data) {
-          const batterie = groupElementsByBatteryNumber(cardData.data);
+          const batterie = groupElementsByBatteryNumber(res.data);
           console.log(batterie);
           sendDataToParent(false);
           setValueCards(batterie['1']);
