@@ -29,7 +29,7 @@ const LoginPage = ({onUpdateLoading, onUpdateName}) => {
         }
       )
       .then((res) => {
-        if (res?.data?.id) {
+        if (res?.data) {
           sendDataToParent(false, values.name);
           navigate('/card-list');
         }
