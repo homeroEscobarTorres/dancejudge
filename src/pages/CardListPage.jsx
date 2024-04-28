@@ -414,8 +414,12 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
       })
       .then((res) => {
         if (res.data) {
+          const batterie = groupElementsByBatteryNumber(cardData.data);
+          console.log(batterie);
           sendDataToParent(false);
-          // navigate('/card-list');
+          setValueCards(batterie['1']);
+          calcMaxVotes(batterie['1'].length);
+          setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
         }
       });
 
@@ -472,19 +476,31 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
     sendDataToParent(true);
 
     axios
-      .post(`${ENV.baseUrl}/garaCoppia/selezionaCoppie`, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Credentials': 'true',
+      .post(
+        `${ENV.baseUrl}/garaCoppia/selezionaCoppie`,
+        {
+          data: {
+            coppieSelezionate: selectedCards,
+          },
         },
-        data: {
-          coppieSelezionate: selectedCards,
-        },
-      })
+        {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Credentials': 'true',
+          },
+        }
+      )
       .then((res) => {
         if (res.data) {
+          console.log(selectedCards);
+          notification.success({
+            message: 'Incredible!',
+            description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
+            duration: 0,
+          });
           sendDataToParent(false);
+          navigate('/info');
         }
       });
 

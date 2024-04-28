@@ -14,17 +14,22 @@ const LoginPage = ({onUpdateLoading, onUpdateName}) => {
     console.log('Login:', values);
 
     axios
-      .post(`${ENV.baseUrl}/giudici/richiestaId`, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Credentials': 'true',
+      .post(
+        `${ENV.baseUrl}/giudici/richiestaId`,
+        {
+          data: {
+            cognome: values.surname,
+            nome: values.name,
+          },
         },
-        data: {
-          cognome: values.surname,
-          nome: values.name,
-        },
-      })
+        {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Credentials': 'true',
+          },
+        }
+      )
       .then((res) => {
         if (res?.data?.id) {
           sendDataToParent(false, values.name);
