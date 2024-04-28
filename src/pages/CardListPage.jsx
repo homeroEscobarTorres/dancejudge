@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Card, Button, Typography, notification, Badge} from 'antd';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import {ENV} from '../consts/config';
 
 const gridStyle = {
   width: '25%',
@@ -403,31 +404,31 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
 
   const loadBatteries = () => {
     onUpdateLoading(true);
-    // axios
-    //   .get(`http://192.168.1.125:8090/garaCoppia/batterie`, {
-    //     headers: {
-    //       'Access-Control-Allow-Origin': '*',
-    //       'Access-Control-Allow-Headers': '*',
-    //       'Access-Control-Allow-Credentials': 'true',
-    //     },
-    //   })
-    //   .then((res) => {
-    //     if (res.data) {
-    //       sendDataToParent(false);
-    //       // navigate('/card-list');
-    //     }
-    //   });
+    axios
+      .get(`${ENV.baseUrl}/garaCoppia/batterie`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Credentials': 'true',
+        },
+      })
+      .then((res) => {
+        if (res.data) {
+          sendDataToParent(false);
+          // navigate('/card-list');
+        }
+      });
 
-    setTimeout(() => {
-      if (cardData?.data?.length > 0) {
-        const batterie = groupElementsByBatteryNumber(cardData.data);
-        console.log(batterie);
-        sendDataToParent(false);
-        setValueCards(batterie['1']);
-        calcMaxVotes(batterie['1'].length);
-        setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
-      }
-    }, 3000);
+    // setTimeout(() => {
+    //   if (cardData?.data?.length > 0) {
+    //     const batterie = groupElementsByBatteryNumber(cardData.data);
+    //     console.log(batterie);
+    //     sendDataToParent(false);
+    //     setValueCards(batterie['1']);
+    //     calcMaxVotes(batterie['1'].length);
+    //     setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
+    //   }
+    // }, 3000);
   };
 
   const calcMaxVotes = (totalCouples) => {
@@ -470,35 +471,35 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
   const handleRateClick = () => {
     sendDataToParent(true);
 
-    // axios
-    //   .post(`http://192.168.1.125:8090/garaCoppia/selezionaCoppie`, {
-    //     headers: {
-    //       'Access-Control-Allow-Origin': '*',
-    //       'Access-Control-Allow-Headers': '*',
-    //       'Access-Control-Allow-Credentials': 'true',
-    //     },
-    //     data: {
-    //       coppieSelezionate: selectedCard,
-    //     }
-    //   })
-    //   .then((res) => {
-    //     if (res.data) {
-    //       sendDataToParent(false);
-    //     }
-    //   });
+    axios
+      .post(`${ENV.baseUrl}/garaCoppia/selezionaCoppie`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Credentials': 'true',
+        },
+        data: {
+          coppieSelezionate: selectedCard,
+        },
+      })
+      .then((res) => {
+        if (res.data) {
+          sendDataToParent(false);
+        }
+      });
 
-    setTimeout(() => {
-      if (selectedCards?.length > 0) {
-        console.log(selectedCards);
-        notification.success({
-          message: 'Incredible!',
-          description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
-          duration: 0,
-        });
-        sendDataToParent(false);
-        navigate('/info');
-      }
-    }, 3000);
+    // setTimeout(() => {
+    //   if (selectedCards?.length > 0) {
+    //     console.log(selectedCards);
+    //     notification.success({
+    //       message: 'Incredible!',
+    //       description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
+    //       duration: 0,
+    //     });
+    //     sendDataToParent(false);
+    //     navigate('/info');
+    //   }
+    // }, 3000);
   };
 
   return (
