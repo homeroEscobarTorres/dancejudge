@@ -479,7 +479,7 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
       .post(
         `${ENV.baseUrl}/garaCoppia/selezionaCoppie`,
         {
-          coppieSelezionate: selectedCards,
+          selectedCards,
         },
         {
           headers: {
