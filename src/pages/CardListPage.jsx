@@ -479,7 +479,7 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
           'Access-Control-Allow-Credentials': 'true',
         },
         data: {
-          coppieSelezionate: selectedCard,
+          coppieSelezionate: selectedCards,
         },
       })
       .then((res) => {
