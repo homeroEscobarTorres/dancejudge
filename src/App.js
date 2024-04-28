@@ -7,6 +7,7 @@ import CardListPage from './pages/CardListPage';
 import LoginPage from './pages/LoginPage';
 import InfoPage from './pages/InfoPage';
 import QRCodePage from './pages/QRCodePage';
+import AdminPage from './pages/AdminPage';
 
 const {Content} = Layout;
 
@@ -41,6 +42,7 @@ const App = () => {
           <HeaderComponent
             onUpdatePrimaryColor={updatePrimaryState}
             onUpdateName={updateNameState}
+            primaryColor={primaryColor}
             name={name}
           ></HeaderComponent>
           <Spin spinning={loading}>
@@ -50,7 +52,14 @@ const App = () => {
                 <Route
                   exact
                   path='/login'
-                  element={<LoginPage onUpdateLoading={updateLoadingState} onUpdateName={updateNameState} />}
+                  element={
+                    <LoginPage
+                      onUpdateLoading={updateLoadingState}
+                      onUpdateName={updateNameState}
+                      onUpdatePrimaryColor={updatePrimaryState}
+                      primaryColor={primaryColor}
+                    />
+                  }
                 />
                 <Route
                   path='/card-list'
@@ -61,6 +70,17 @@ const App = () => {
                 <Route
                   path='/info'
                   element={<InfoPage onUpdateLoading={updateLoadingState} primaryColor={primaryColor} name={name} />}
+                />
+                <Route
+                  path='/admin'
+                  element={
+                    <AdminPage
+                      onUpdateLoading={updateLoadingState}
+                      onUpdateName={updateNameState}
+                      onUpdatePrimaryColor={updatePrimaryState}
+                      name={name}
+                    />
+                  }
                 />
               </Routes>
             </Content>

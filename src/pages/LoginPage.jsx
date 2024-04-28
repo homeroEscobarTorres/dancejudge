@@ -6,48 +6,54 @@ import {ENV} from '../consts/config';
 
 const {Title} = Typography;
 
-const LoginPage = ({onUpdateLoading, onUpdateName}) => {
+const LoginPage = ({onUpdateLoading, onUpdateName, onUpdatePrimaryColor, primaryColor}) => {
   const navigate = useNavigate();
 
   const onFinish = (values) => {
-    sendDataToParent(true);
+    onUpdateLoading(true);
     console.log('Login:', values);
 
-    axios
-      .post(
-        `${ENV.baseUrl}/giudici/richiestaId`,
-        {
-          cognome: values.surname,
-          nome: values.name,
-        },
-        {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*',
-            'Access-Control-Allow-Credentials': 'true',
-          },
-        }
-      )
-      .then((res) => {
-        if (res?.data) {
-          sendDataToParent(false, values.name);
-          navigate('/card-list');
-        }
-      });
+    if (values.name === 'admin' && values.surname === 'admin') {
+      sendDataToParent(false, values.name, '#FF1818');
+      navigate('/admin');
+    }
 
-    // setTimeout(() => {
-    //   let res = null;
-    //   if ((values.name === 'a', values.surname === 'a')) {
-    //     res = true;
-    //     sendDataToParent(false, values.name);
-    //   }
-    //   if (res) navigate('/card-list');
-    // }, 3000);
+    // axios
+    //   .post(
+    //     `${ENV.baseUrl}/giudici/richiestaId`,
+    //     {
+    //       cognome: values.surname,
+    //       nome: values.name,
+    //     },
+    //     {
+    //       headers: {
+    //         'Access-Control-Allow-Origin': '*',
+    //         'Access-Control-Allow-Headers': '*',
+    //         'Access-Control-Allow-Credentials': 'true',
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     if (res?.data) {
+    //       sendDataToParent(false, values.name);
+    //       navigate('/card-list');
+    //     }
+    //   });
+
+    setTimeout(() => {
+      let res = null;
+      if ((values.name === 'a', values.surname === 'a')) {
+        res = true;
+        sendDataToParent(false, values.name, primaryColor);
+      }
+      if (res) navigate('/card-list');
+    }, 3000);
   };
 
-  const sendDataToParent = (loading, name) => {
+  const sendDataToParent = (loading, name, color) => {
     onUpdateLoading(loading);
     onUpdateName(name);
+    onUpdatePrimaryColor(color);
   };
 
   return (

@@ -6,9 +6,9 @@ import luffy from '../assets/img/luffy.gif';
 const {Header} = Layout;
 const {Title} = Typography;
 
-const HeaderComponent = ({onUpdatePrimaryColor, onUpdateName, name}) => {
+const HeaderComponent = ({onUpdatePrimaryColor, onUpdateName, primaryColor, name}) => {
   const navigate = useNavigate();
-  const [primary, setPrimary] = React.useState('#1890ff');
+  const [primary, setPrimary] = useState(primaryColor);
   const [click, setClick] = useState(0);
 
   const sendDataToParent = (color) => {
@@ -35,7 +35,7 @@ const HeaderComponent = ({onUpdatePrimaryColor, onUpdateName, name}) => {
         />
       ) : (
         <Header style={{background: primary, display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-          <Title level={5} style={{color: '#fff', margin: 0}}>
+          <Title level={5} style={{color: '#fff', margin: 0, cursor: 'pointer'}} onClick={() => navigate('/')}>
             BSW Congress
           </Title>
           <div style={{background: primary, display: 'flex', justifyContent: 'end', alignItems: 'center'}}>
