@@ -476,19 +476,13 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
     sendDataToParent(true);
 
     axios
-      .post(
-        `${ENV.baseUrl}/garaCoppia/selezionaCoppie`,
-        {
-          selectedCards,
+      .post(`${ENV.baseUrl}/garaCoppia/selezionaCoppie`, selectedCards, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Credentials': 'true',
         },
-        {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*',
-            'Access-Control-Allow-Credentials': 'true',
-          },
-        }
-      )
+      })
       .then((res) => {
         if (res.data) {
           console.log(selectedCards);
