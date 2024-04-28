@@ -17,10 +17,8 @@ const LoginPage = ({onUpdateLoading, onUpdateName}) => {
       .post(
         `${ENV.baseUrl}/giudici/richiestaId`,
         {
-          data: {
-            cognome: values.surname,
-            nome: values.name,
-          },
+          cognome: values.surname,
+          nome: values.name,
         },
         {
           headers: {
