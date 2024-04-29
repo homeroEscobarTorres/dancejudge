@@ -465,7 +465,7 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
 
   useEffect(() => {
     loadBatteries();
-  }, [setValueCards]);
+  }, [batteryList.length === 0, setValueCards]);
 
   const sendDataToParent = (loading) => {
     onUpdateLoading(loading);
