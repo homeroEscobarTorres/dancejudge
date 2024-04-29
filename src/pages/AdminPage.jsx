@@ -13,7 +13,7 @@ const AdminPage = ({onUpdateLoading, onUpdateName, onUpdatePrimaryColor, name}) 
     onUpdateLoading(true);
 
     axios
-      .post(`${ENV.baseUrl}/users/userList`, values.pairs.toJSON(), {
+      .post(`${ENV.baseUrl}/users/userList`, JSON.stringify(values.pairs), {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Headers': '*',
