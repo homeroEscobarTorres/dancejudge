@@ -34,6 +34,8 @@ const AdminPage = ({onUpdateLoading, onUpdateName, onUpdatePrimaryColor, name}) 
             description: 'couples were created.',
             duration: 0,
           });
+          sendDataToParent(false, null, '#1890FF');
+          navigate('/');
         }
       });
 
