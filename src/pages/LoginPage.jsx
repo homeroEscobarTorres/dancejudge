@@ -16,38 +16,38 @@ const LoginPage = ({onUpdateLoading, onUpdateName, onUpdatePrimaryColor, primary
     if (values.name === 'admin' && values.surname === 'admin') {
       sendDataToParent(false, values.name, '#FF1818');
       navigate('/admin');
-    }
-
-    axios
-      .post(
-        `${ENV.baseUrl}/giudici/richiestaId`,
-        {
-          cognome: values.surname,
-          nome: values.name,
-        },
-        {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*',
-            'Access-Control-Allow-Credentials': 'true',
+    } else {
+      axios
+        .post(
+          `${ENV.baseUrl}/giudici/richiestaId`,
+          {
+            cognome: values.surname,
+            nome: values.name,
           },
-        }
-      )
-      .then((res) => {
-        if (res?.data) {
-          sendDataToParent(false, values.name, primaryColor);
-          navigate('/card-list');
-        }
-      });
+          {
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': '*',
+              'Access-Control-Allow-Credentials': 'true',
+            },
+          }
+        )
+        .then((res) => {
+          if (res?.data) {
+            sendDataToParent(false, values.name, primaryColor);
+            navigate('/card-list');
+          }
+        });
 
-    // setTimeout(() => {
-    //   let res = null;
-    //   if ((values.name === 'a', values.surname === 'a')) {
-    //     res = true;
-    //     sendDataToParent(false, values.name, primaryColor);
-    //   }
-    //   if (res) navigate('/card-list');
-    // }, 3000);
+      // setTimeout(() => {
+      //   let res = null;
+      //   if ((values.name === 'a', values.surname === 'a')) {
+      //     res = true;
+      //     sendDataToParent(false, values.name, primaryColor);
+      //   }
+      //   if (res) navigate('/card-list');
+      // }, 3000);
+    }
   };
 
   const sendDataToParent = (loading, name, color) => {
