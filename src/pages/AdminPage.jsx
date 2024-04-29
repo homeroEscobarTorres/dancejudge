@@ -12,41 +12,41 @@ const AdminPage = ({onUpdateLoading, onUpdateName, onUpdatePrimaryColor, name}) 
   const onFinish = (values) => {
     onUpdateLoading(true);
 
-    // axios
-    //   .post(
-    //     `${ENV.baseUrl}/giudici/richiestaId`,
-    //     {
-    //       cognome: values.surname,
-    //       nome: values.name,
-    //     },
-    //     {
-    //       headers: {
-    //         'Access-Control-Allow-Origin': '*',
-    //         'Access-Control-Allow-Headers': '*',
-    //         'Access-Control-Allow-Credentials': 'true',
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     if (res?.data) {
-    //       notification.success({
+    axios
+      .post(
+        `${ENV.baseUrl}/giudici/richiestaId`,
+        {
+          cognome: values.surname,
+          nome: values.name,
+        },
+        {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Credentials': 'true',
+          },
+        }
+      )
+      .then((res) => {
+        if (res?.data) {
+          notification.success({
+            message: 'Incredible!',
+            description: 'couples were created.',
+            duration: 0,
+          });
+        }
+      });
+
+    // setTimeout(() => {
+    //   notification.success({
     //     message: 'Incredible!',
     //     description: 'couples were created.',
     //     duration: 0,
-    // });
-    //     }
     //   });
-
-    setTimeout(() => {
-      notification.success({
-        message: 'Incredible!',
-        description: 'couples were created.',
-        duration: 0,
-      });
-      console.log(values);
-      sendDataToParent(false, null, '#1890FF');
-      navigate('/');
-    }, 3000);
+    //   console.log(values);
+    //   sendDataToParent(false, null, '#1890FF');
+    //   navigate('/');
+    // }, 3000);
   };
 
   const sendDataToParent = (loading, name, color) => {
