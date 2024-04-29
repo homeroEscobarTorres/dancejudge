@@ -383,7 +383,7 @@ const cardData = {
 };
 // MOCK
 
-const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
+const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primaryColor, name}) => {
   const [valueCards, setValueCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
   // const [idBatteria, setIdBatteria] = useState(0);
@@ -416,7 +416,6 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
       .then((res) => {
         if (res.data) {
           const batterie = groupElementsByBatteryNumber(res.data);
-          console.log(batterie);
           sendDataToParent(false);
           setValueCards(batterie['1']);
           calcMaxVotes(batterie['1'].length);
@@ -427,7 +426,6 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
     // setTimeout(() => {
     //   if (cardData?.data?.length > 0) {
     //     const batterie = groupElementsByBatteryNumber(cardData.data);
-    //     console.log(batterie);
     //     sendDataToParent(false);
     //     setValueCards(batterie['1']);
     //     calcMaxVotes(batterie['1'].length);
@@ -486,20 +484,19 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
       })
       .then((res) => {
         if (res.data) {
-          console.log(selectedCards);
           notification.success({
             message: 'Incredible!',
             description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
             duration: 0,
           });
           sendDataToParent(false);
+          onUpdateBatteryList(res.data);
           navigate('/info');
         }
       });
 
     // setTimeout(() => {
     //   if (selectedCards?.length > 0) {
-    //     console.log(selectedCards);
     //     notification.success({
     //       message: 'Incredible!',
     //       description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
@@ -517,15 +514,25 @@ const CardListPage = ({primaryColor, onUpdateLoading, name}) => {
       <Title level={3}>Choose the couples you like most:</Title>
       <Badge count={maxVotes - selectedCards.length}>
         <Card title={titleCard}>
-          {valueCards.map((item) => (
-            <Card.Grid
-              key={item?.userCoppia?.id}
-              style={getCardStyle(item?.userCoppia?.id)}
-              onClick={() => handleCardClick(item?.userCoppia?.id)}
-            >
-              {item?.userCoppia?.id}
-            </Card.Grid>
-          ))}
+          {batteryList?.length > 0
+            ? batteryList.map((item) => (
+                <Card.Grid
+                  key={item?.userCoppia?.id}
+                  style={getCardStyle(item?.userCoppia?.id)}
+                  onClick={() => handleCardClick(item?.userCoppia?.id)}
+                >
+                  {item?.userCoppia?.id}
+                </Card.Grid>
+              ))
+            : valueCards.map((item) => (
+                <Card.Grid
+                  key={item?.userCoppia?.id}
+                  style={getCardStyle(item?.userCoppia?.id)}
+                  onClick={() => handleCardClick(item?.userCoppia?.id)}
+                >
+                  {item?.userCoppia?.id}
+                </Card.Grid>
+              ))}
         </Card>
       </Badge>
 

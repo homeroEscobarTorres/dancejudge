@@ -15,6 +15,7 @@ const App = () => {
   const [primaryColor, setPrimaryColor] = useState('#1890ff');
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
+  const [batteryList, setBatteryList] = useState([]);
 
   const updatePrimaryState = (dataFromChild) => {
     setPrimaryColor(dataFromChild);
@@ -26,6 +27,11 @@ const App = () => {
 
   const updateNameState = (dataFromChild) => {
     setName(dataFromChild);
+    console.log(dataFromChild);
+  };
+
+  const updateBatteryList = (dataFromChild) => {
+    setBatteryList(dataFromChild);
     console.log(dataFromChild);
   };
 
@@ -64,7 +70,13 @@ const App = () => {
                 <Route
                   path='/card-list'
                   element={
-                    <CardListPage onUpdateLoading={updateLoadingState} primaryColor={primaryColor} name={name} />
+                    <CardListPage
+                      onUpdateLoading={updateLoadingState}
+                      onUpdateBatteryList={updateBatteryList}
+                      batteryList={batteryList}
+                      primaryColor={primaryColor}
+                      name={name}
+                    />
                   }
                 />
                 <Route
