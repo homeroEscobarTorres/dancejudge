@@ -35,7 +35,7 @@ const LoginPage = ({onUpdateLoading, onUpdateName, onUpdatePrimaryColor, primary
       )
       .then((res) => {
         if (res?.data) {
-          sendDataToParent(false, values.name);
+          sendDataToParent(false, values.name, primaryColor);
           navigate('/card-list');
         }
       });
