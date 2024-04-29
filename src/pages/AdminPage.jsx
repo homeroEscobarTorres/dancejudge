@@ -13,20 +13,13 @@ const AdminPage = ({onUpdateLoading, onUpdateName, onUpdatePrimaryColor, name}) 
     onUpdateLoading(true);
 
     axios
-      .post(
-        `${ENV.baseUrl}/giudici/richiestaId`,
-        {
-          cognome: values.surname,
-          nome: values.name,
+      .post(`${ENV.baseUrl}/users/userList`, values, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Credentials': 'true',
         },
-        {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*',
-            'Access-Control-Allow-Credentials': 'true',
-          },
-        }
-      )
+      })
       .then((res) => {
         if (res?.data) {
           notification.success({
