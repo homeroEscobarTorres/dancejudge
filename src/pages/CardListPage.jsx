@@ -465,7 +465,7 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
 
   useEffect(() => {
     loadBatteries();
-  }, [batteryList.length === 0, setValueCards]);
+  }, [batteryList.length === 0]);
 
   useEffect(() => {
     setTitleCard(`You're judging battery number ${batteryList[0]?.numeroBatteria}`);
