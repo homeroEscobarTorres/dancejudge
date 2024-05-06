@@ -381,6 +381,181 @@ const cardData = {
     },
   ],
 };
+const batteria2 = {
+  data: [
+    {
+      id: 11,
+      userCoppia: {
+        id: 11,
+        votoList: [],
+        dataDiNascita: '1993-09-04',
+        nome: 'Karim',
+        cognome: 'Cheikh',
+        email: 'karimcheikh7@gmail.com',
+        sesso: 'M',
+        nomePartner: 'Denise',
+        cognomePartner: 'Ferrando',
+        dataDiNascitaPartner: '1972-11-24',
+        sessoPartner: 'F',
+      },
+      numeroBatteria: 2,
+      eliminato: 'Eliminato',
+      selezionato: null,
+    },
+    {
+      id: 12,
+      userCoppia: {
+        id: 12,
+        votoList: [],
+        dataDiNascita: '1993-09-04',
+        nome: 'Karim',
+        cognome: 'Cheikh',
+        email: 'karimcheikh7@gmail.com',
+        sesso: 'M',
+        nomePartner: 'Denise',
+        cognomePartner: 'Ferrando',
+        dataDiNascitaPartner: '1972-11-24',
+        sessoPartner: 'F',
+      },
+      numeroBatteria: 2,
+      eliminato: 'Eliminato',
+      selezionato: null,
+    },
+    {
+      id: 13,
+      userCoppia: {
+        id: 13,
+        votoList: [],
+        dataDiNascita: '1993-09-04',
+        nome: 'Karim',
+        cognome: 'Cheikh',
+        email: 'karimcheikh7@gmail.com',
+        sesso: 'M',
+        nomePartner: 'Denise',
+        cognomePartner: 'Ferrando',
+        dataDiNascitaPartner: '1972-11-24',
+        sessoPartner: 'F',
+      },
+      numeroBatteria: 2,
+      eliminato: 'Eliminato',
+      selezionato: null,
+    },
+    {
+      id: 14,
+      userCoppia: {
+        id: 14,
+        votoList: [],
+        dataDiNascita: '1993-09-04',
+        nome: 'Karim',
+        cognome: 'Cheikh',
+        email: 'karimcheikh7@gmail.com',
+        sesso: 'M',
+        nomePartner: 'Denise',
+        cognomePartner: 'Ferrando',
+        dataDiNascitaPartner: '1972-11-24',
+        sessoPartner: 'F',
+      },
+      numeroBatteria: 2,
+      eliminato: 'Eliminato',
+      selezionato: null,
+    },
+    {
+      id: 15,
+      userCoppia: {
+        id: 15,
+        votoList: [],
+        dataDiNascita: '1993-09-04',
+        nome: 'Karim',
+        cognome: 'Cheikh',
+        email: 'karimcheikh7@gmail.com',
+        sesso: 'M',
+        nomePartner: 'Denise',
+        cognomePartner: 'Ferrando',
+        dataDiNascitaPartner: '1972-11-24',
+        sessoPartner: 'F',
+      },
+      numeroBatteria: 2,
+      eliminato: 'Eliminato',
+      selezionato: null,
+    },
+    {
+      id: 16,
+      userCoppia: {
+        id: 16,
+        votoList: [],
+        dataDiNascita: '1993-09-04',
+        nome: 'Karim',
+        cognome: 'Cheikh',
+        email: 'karimcheikh7@gmail.com',
+        sesso: 'M',
+        nomePartner: 'Denise',
+        cognomePartner: 'Ferrando',
+        dataDiNascitaPartner: '1972-11-24',
+        sessoPartner: 'F',
+      },
+      numeroBatteria: 2,
+      eliminato: 'Eliminato',
+      selezionato: null,
+    },
+    {
+      id: 17,
+      userCoppia: {
+        id: 17,
+        votoList: [],
+        dataDiNascita: '1993-09-04',
+        nome: 'Karim',
+        cognome: 'Cheikh',
+        email: 'karimcheikh7@gmail.com',
+        sesso: 'M',
+        nomePartner: 'Denise',
+        cognomePartner: 'Ferrando',
+        dataDiNascitaPartner: '1972-11-24',
+        sessoPartner: 'F',
+      },
+      numeroBatteria: 2,
+      eliminato: 'Eliminato',
+      selezionato: null,
+    },
+    {
+      id: 18,
+      userCoppia: {
+        id: 18,
+        votoList: [],
+        dataDiNascita: '1993-09-04',
+        nome: 'Karim',
+        cognome: 'Cheikh',
+        email: 'karimcheikh7@gmail.com',
+        sesso: 'M',
+        nomePartner: 'Denise',
+        cognomePartner: 'Ferrando',
+        dataDiNascitaPartner: '1972-11-24',
+        sessoPartner: 'F',
+      },
+      numeroBatteria: 2,
+      eliminato: 'Eliminato',
+      selezionato: null,
+    },
+    {
+      id: 19,
+      userCoppia: {
+        id: 19,
+        votoList: [],
+        dataDiNascita: '1993-09-04',
+        nome: 'Karim',
+        cognome: 'Cheikh',
+        email: 'karimcheikh7@gmail.com',
+        sesso: 'M',
+        nomePartner: 'Denise',
+        cognomePartner: 'Ferrando',
+        dataDiNascitaPartner: '1972-11-24',
+        sessoPartner: 'F',
+      },
+      numeroBatteria: 2,
+      eliminato: 'Eliminato',
+      selezionato: null,
+    },
+  ],
+};
 // MOCK
 
 const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primaryColor, name}) => {
@@ -405,33 +580,33 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
 
   const loadBatteries = () => {
     onUpdateLoading(true);
-    axios
-      .get(`${ENV.baseUrl}/garaCoppia/batterie`, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Credentials': 'true',
-        },
-      })
-      .then((res) => {
-        if (res.data) {
-          const batterie = groupElementsByBatteryNumber(res.data);
-          sendDataToParent(false);
-          setValueCards(batterie['1']);
-          calcMaxVotes(batterie['1'].length);
-          setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
-        }
-      });
+    // axios
+    //   .get(`${ENV.baseUrl}/garaCoppia/batterie`, {
+    //     headers: {
+    //       'Access-Control-Allow-Origin': '*',
+    //       'Access-Control-Allow-Headers': '*',
+    //       'Access-Control-Allow-Credentials': 'true',
+    //     },
+    //   })
+    //   .then((res) => {
+    //     if (res.data) {
+    //       const batterie = groupElementsByBatteryNumber(res.data);
+    //       sendDataToParent(false);
+    //       setValueCards(batterie['1']);
+    //       calcMaxVotes(batterie['1'].length);
+    //       setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
+    //     }
+    //   });
 
-    // setTimeout(() => {
-    //   if (cardData?.data?.length > 0) {
-    //     const batterie = groupElementsByBatteryNumber(cardData.data);
-    //     sendDataToParent(false);
-    //     setValueCards(batterie['1']);
-    //     calcMaxVotes(batterie['1'].length);
-    //     setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
-    //   }
-    // }, 3000);
+    setTimeout(() => {
+      if (cardData?.data?.length > 0) {
+        const batterie = groupElementsByBatteryNumber(cardData.data);
+        sendDataToParent(false);
+        setValueCards(batterie['1']);
+        calcMaxVotes(batterie['1'].length);
+        setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
+      }
+    }, 3000);
   };
 
   const calcMaxVotes = (totalCouples) => {
@@ -465,11 +640,13 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
 
   useEffect(() => {
     loadBatteries();
-  }, [batteryList.length === 0]);
+    console.log('ENTRAYO list = 0', batteryList.length);
+  }, [setValueCards]);
 
   useEffect(() => {
     setTitleCard(`You're judging battery number ${batteryList[0]?.numeroBatteria}`);
-  }, [batteryList.length > 0]);
+    console.log('ENTRAYO list > 0', batteryList.length);
+  }, [onUpdateBatteryList]);
 
   const sendDataToParent = (loading) => {
     onUpdateLoading(loading);
@@ -478,38 +655,39 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
   const handleRateClick = () => {
     sendDataToParent(true);
 
-    axios
-      .post(`${ENV.baseUrl}/garaCoppia/selezionaCoppie`, selectedCards, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Credentials': 'true',
-        },
-      })
-      .then((res) => {
-        if (res.data) {
-          notification.success({
-            message: 'Incredible!',
-            description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
-            duration: 0,
-          });
-          sendDataToParent(false);
-          onUpdateBatteryList(res.data);
-          navigate('/info');
-        }
-      });
+    // axios
+    //   .post(`${ENV.baseUrl}/garaCoppia/selezionaCoppie`, selectedCards, {
+    //     headers: {
+    //       'Access-Control-Allow-Origin': '*',
+    //       'Access-Control-Allow-Headers': '*',
+    //       'Access-Control-Allow-Credentials': 'true',
+    //     },
+    //   })
+    //   .then((res) => {
+    //     if (res.data) {
+    //       notification.success({
+    //         message: 'Incredible!',
+    //         description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
+    //         duration: 0,
+    //       });
+    //       sendDataToParent(false);
+    //       onUpdateBatteryList(res.data);
+    //       navigate('/info');
+    //     }
+    //   });
 
-    // setTimeout(() => {
-    //   if (selectedCards?.length > 0) {
-    //     notification.success({
-    //       message: 'Incredible!',
-    //       description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
-    //       duration: 0,
-    //     });
-    //     sendDataToParent(false);
-    //     navigate('/info');
-    //   }
-    // }, 3000);
+    setTimeout(() => {
+      if (selectedCards?.length > 0) {
+        notification.success({
+          message: 'Incredible!',
+          description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
+          duration: 0,
+        });
+        sendDataToParent(false);
+        onUpdateBatteryList(batteria2.data);
+        navigate('/info');
+      }
+    }, 3000);
   };
 
   return (

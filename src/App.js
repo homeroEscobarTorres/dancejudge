@@ -4,6 +4,7 @@ import {Route, BrowserRouter as Router, Routes} from 'react-router-dom';
 import './App.less';
 import HeaderComponent from './components/HeaderComponent';
 import CardListPage from './pages/CardListPage';
+import LastRoundPage from './pages/LastRoundPage';
 import LoginPage from './pages/LoginPage';
 import InfoPage from './pages/InfoPage';
 import QRCodePage from './pages/QRCodePage';
@@ -73,6 +74,17 @@ const App = () => {
                     <CardListPage
                       onUpdateLoading={updateLoadingState}
                       onUpdateBatteryList={updateBatteryList}
+                      batteryList={batteryList}
+                      primaryColor={primaryColor}
+                      name={name}
+                    />
+                  }
+                />
+                <Route
+                  path='/last-round'
+                  element={
+                    <LastRoundPage
+                      onUpdateLoading={updateLoadingState}
                       batteryList={batteryList}
                       primaryColor={primaryColor}
                       name={name}

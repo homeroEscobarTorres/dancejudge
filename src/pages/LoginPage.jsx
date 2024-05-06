@@ -17,36 +17,34 @@ const LoginPage = ({onUpdateLoading, onUpdateName, onUpdatePrimaryColor, primary
       sendDataToParent(false, values.name, '#FF1818');
       navigate('/admin');
     } else {
-      axios
-        .post(
-          `${ENV.baseUrl}/giudici/richiestaId`,
-          {
-            cognome: values.surname,
-            nome: values.name,
-          },
-          {
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Headers': '*',
-              'Access-Control-Allow-Credentials': 'true',
-            },
-          }
-        )
-        .then((res) => {
-          if (res?.data) {
-            sendDataToParent(false, values.name, primaryColor);
-            navigate('/card-list');
-          }
-        });
+      // axios
+      //   .post(
+      //     `${ENV.baseUrl}/giudici/richiestaId`,
+      //     {
+      //       cognome: values.surname,
+      //       nome: values.name,
+      //     },
+      //     {
+      //       headers: {
+      //         'Access-Control-Allow-Origin': '*',
+      //         'Access-Control-Allow-Headers': '*',
+      //         'Access-Control-Allow-Credentials': 'true',
+      //       },
+      //     }
+      //   )
+      //   .then((res) => {
+      //     if (res?.data) {
+      //       sendDataToParent(false, values.name, primaryColor);
+      //       navigate('/card-list');
+      //     }
+      //   });
 
-      // setTimeout(() => {
-      //   let res = null;
-      //   if ((values.name === 'a', values.surname === 'a')) {
-      //     res = true;
-      //     sendDataToParent(false, values.name, primaryColor);
-      //   }
-      //   if (res) navigate('/card-list');
-      // }, 3000);
+      setTimeout(() => {
+        if ((values.name === 'a', values.surname === 'a')) {
+          sendDataToParent(false, values.name, primaryColor);
+          navigate('/card-list');
+        }
+      }, 3000);
     }
   };
 

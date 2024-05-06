@@ -12,36 +12,36 @@ const AdminPage = ({onUpdateLoading, onUpdateName, onUpdatePrimaryColor, name}) 
   const onFinish = (values) => {
     onUpdateLoading(true);
 
-    axios
-      .post(`${ENV.baseUrl}/users/userList`, JSON.rawJSON(values.pairs), {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Credentials': 'true',
-        },
-      })
-      .then((res) => {
-        if (res?.data) {
-          notification.success({
-            message: 'Incredible!',
-            description: 'couples were created.',
-            duration: 0,
-          });
-          sendDataToParent(false, null, '#1890FF');
-          navigate('/');
-        }
-      });
-
-    // setTimeout(() => {
-    //   notification.success({
-    //     message: 'Incredible!',
-    //     description: 'couples were created.',
-    //     duration: 0,
+    // axios
+    //   .post(`${ENV.baseUrl}/users/userList`, values.pairs, {
+    //     headers: {
+    //       'Access-Control-Allow-Origin': '*',
+    //       'Access-Control-Allow-Headers': '*',
+    //       'Access-Control-Allow-Credentials': 'true',
+    //     },
+    //   })
+    //   .then((res) => {
+    //     if (res?.data) {
+    //       notification.success({
+    //         message: 'Incredible!',
+    //         description: 'couples were created.',
+    //         duration: 0,
+    //       });
+    //       sendDataToParent(false, null, '#1890FF');
+    //       navigate('/');
+    //     }
     //   });
-    //   console.log(values);
-    //   sendDataToParent(false, null, '#1890FF');
-    //   navigate('/');
-    // }, 3000);
+
+    setTimeout(() => {
+      notification.success({
+        message: 'Incredible!',
+        description: 'couples were created.',
+        duration: 0,
+      });
+      console.log(values);
+      sendDataToParent(false, null, '#1890FF');
+      navigate('/');
+    }, 3000);
   };
 
   const sendDataToParent = (loading, name, color) => {
