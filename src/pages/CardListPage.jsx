@@ -579,25 +579,27 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
   };
 
   const loadBatteries = () => {
-    onUpdateLoading(true);
-    axios
-      .get(`${ENV.baseUrl}/garaCoppia/batterie`, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Credentials': 'true',
-        },
-      })
-      .then((res) => {
-        if (res.data) {
-          const batterie = groupElementsByBatteryNumber(res.data);
-          onUpdateBatteryList(batterie);
-          sendDataToParent(false);
-          setValueCards(batterie['1']);
-          calcMaxVotes(batterie['1'].length);
-          setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
-        }
-      });
+    if (batteryList.length > 0) {
+      onUpdateLoading(true);
+      axios
+        .get(`${ENV.baseUrl}/garaCoppia/batterie`, {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Credentials': 'true',
+          },
+        })
+        .then((res) => {
+          if (res.data) {
+            const batterie = groupElementsByBatteryNumber(res.data);
+            onUpdateBatteryList(batterie);
+            sendDataToParent(false);
+            setValueCards(batterie['1']);
+            calcMaxVotes(batterie['1'].length);
+            setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
+          }
+        });
+    }
 
     // setTimeout(() => {
     //   if (cardData?.data?.length > 0) {
