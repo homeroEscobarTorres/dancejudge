@@ -599,6 +599,13 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
             setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
           }
         });
+    } else {
+      const batterie = groupElementsByBatteryNumber(batteryList);
+      onUpdateBatteryList(batterie);
+      sendDataToParent(false);
+      setValueCards(batterie['1']);
+      calcMaxVotes(batterie['1'].length);
+      setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
     }
 
     // setTimeout(() => {
