@@ -657,7 +657,7 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
     sendDataToParent(true);
 
     axios
-      .post(`${ENV.baseUrl}/${batteryList[0]?.numeroBatteria}/selezionaCoppie`, selectedCards, {
+      .post(`${ENV.baseUrl}/${Object.keys(batterie)[0]}/selezionaCoppie`, selectedCards, {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Headers': '*',
