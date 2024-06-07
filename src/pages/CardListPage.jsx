@@ -561,7 +561,6 @@ const batteria2 = {
 const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primaryColor, name}) => {
   const [valueCards, setValueCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
-  // const [idBatteria, setIdBatteria] = useState(0);
   const [maxVotes, setMaxVotes] = useState(0);
   const [titleCard, setTitleCard] = useState('');
   const navigate = useNavigate();
@@ -596,14 +595,14 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
             sendDataToParent(false);
             setValueCards(batterie['1']);
             calcMaxVotes(batterie['1'].length);
-            setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
+            setTitleCard(`You're judging battery number ${Object.keys(batterie)[0].numeroBatteria}`);
           }
         });
     } else {
       onUpdateBatteryList(batteryList);
       setValueCards(batteryList);
       calcMaxVotes(batteryList?.length);
-      setTitleCard(`You're judging battery number ${batteryList[0].numeroBatteria}`);
+      setTitleCard(`You're judging battery number ${batteryList[0]?.numeroBatteria}`);
     }
 
     // setTimeout(() => {
@@ -632,28 +631,16 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
       }
       groupedData[batteryNumber].push(item);
     });
-    // const groupedArrays = {};
-    // for (const batteryNumber in groupedData) {
-    //   groupedArrays[batteryNumber] = [];
-    //   const items = groupedData[batteryNumber];
-    //   for (let i = 0; i < items.length; i += 10) {
-    //     groupedArrays[batteryNumber].push(items.slice(i, i + 10));
-    //   }
-    // }
-
-    // return groupedArrays;
 
     return groupedData;
   };
 
   useEffect(() => {
     loadBatteries();
-    console.log('ENTRAYO list = 0', batteryList.length);
   }, [setValueCards]);
 
   useEffect(() => {
     setTitleCard(`You're judging battery number ${batteryList[0]?.numeroBatteria}`);
-    console.log('ENTRAYO list > 0', batteryList.length);
   }, [onUpdateBatteryList]);
 
   const sendDataToParent = (loading) => {
@@ -692,6 +679,7 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
     //       duration: 0,
     //     });
     //     sendDataToParent(false);
+    //       onUpdateBatteryList(res.data);
     //     navigate('/info');
     //   }
     // }, 3000);
