@@ -672,6 +672,7 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
             duration: 0,
           });
           sendDataToParent(false);
+          onUpdateBatteryList(res.data);
           navigate('/info');
         }
       });
