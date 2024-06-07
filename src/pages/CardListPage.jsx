@@ -601,9 +601,8 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
         });
     } else {
       onUpdateBatteryList(batteryList);
-      sendDataToParent(false);
-      setValueCards(batteryList['1']);
-      calcMaxVotes(batteryList['1'].length);
+      setValueCards(batteryList);
+      calcMaxVotes(batteryList?.length);
       setTitleCard(`You're judging battery number ${batteryList[0].numeroBatteria}`);
     }
 
