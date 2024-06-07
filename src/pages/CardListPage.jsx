@@ -580,33 +580,33 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
 
   const loadBatteries = () => {
     onUpdateLoading(true);
-    // axios
-    //   .get(`${ENV.baseUrl}/garaCoppia/batterie`, {
-    //     headers: {
-    //       'Access-Control-Allow-Origin': '*',
-    //       'Access-Control-Allow-Headers': '*',
-    //       'Access-Control-Allow-Credentials': 'true',
-    //     },
-    //   })
-    //   .then((res) => {
-    //     if (res.data) {
-    //       const batterie = groupElementsByBatteryNumber(res.data);
-    //       sendDataToParent(false);
-    //       setValueCards(batterie['1']);
-    //       calcMaxVotes(batterie['1'].length);
-    //       setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
-    //     }
-    //   });
+    axios
+      .get(`${ENV.baseUrl}/garaCoppia/batterie`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Credentials': 'true',
+        },
+      })
+      .then((res) => {
+        if (res.data) {
+          const batterie = groupElementsByBatteryNumber(res.data);
+          sendDataToParent(false);
+          setValueCards(batterie['1']);
+          calcMaxVotes(batterie['1'].length);
+          setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
+        }
+      });
 
-    setTimeout(() => {
-      if (cardData?.data?.length > 0) {
-        const batterie = groupElementsByBatteryNumber(cardData.data);
-        sendDataToParent(false);
-        setValueCards(batterie['1']);
-        calcMaxVotes(batterie['1'].length);
-        setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
-      }
-    }, 3000);
+    // setTimeout(() => {
+    //   if (cardData?.data?.length > 0) {
+    //     const batterie = groupElementsByBatteryNumber(cardData.data);
+    //     sendDataToParent(false);
+    //     setValueCards(batterie['1']);
+    //     calcMaxVotes(batterie['1'].length);
+    //     setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
+    //   }
+    // }, 3000);
   };
 
   const calcMaxVotes = (totalCouples) => {
@@ -655,39 +655,39 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
   const handleRateClick = () => {
     sendDataToParent(true);
 
-    // axios
-    //   .post(`${ENV.baseUrl}/garaCoppia/selezionaCoppie`, selectedCards, {
-    //     headers: {
-    //       'Access-Control-Allow-Origin': '*',
-    //       'Access-Control-Allow-Headers': '*',
-    //       'Access-Control-Allow-Credentials': 'true',
-    //     },
-    //   })
-    //   .then((res) => {
-    //     if (res.data) {
-    //       notification.success({
-    //         message: 'Incredible!',
-    //         description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
-    //         duration: 0,
-    //       });
-    //       sendDataToParent(false);
-    //       onUpdateBatteryList(res.data);
-    //       navigate('/info');
-    //     }
-    //   });
+    axios
+      .post(`${ENV.baseUrl}/garaCoppia/selezionaCoppie`, selectedCards, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Credentials': 'true',
+        },
+      })
+      .then((res) => {
+        if (res.data) {
+          notification.success({
+            message: 'Incredible!',
+            description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
+            duration: 0,
+          });
+          sendDataToParent(false);
+          onUpdateBatteryList(res.data);
+          navigate('/info');
+        }
+      });
 
-    setTimeout(() => {
-      if (selectedCards?.length > 0) {
-        notification.success({
-          message: 'Incredible!',
-          description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
-          duration: 0,
-        });
-        sendDataToParent(false);
-        onUpdateBatteryList(batteria2.data);
-        navigate('/info');
-      }
-    }, 3000);
+    // setTimeout(() => {
+    //   if (selectedCards?.length > 0) {
+    //     notification.success({
+    //       message: 'Incredible!',
+    //       description: 'How nice to be a judge, no one can judge you. Great job you chose your couples.',
+    //       duration: 0,
+    //     });
+    //     sendDataToParent(false);
+    //     onUpdateBatteryList(batteria2.data);
+    //     navigate('/info');
+    //   }
+    // }, 3000);
   };
 
   return (
