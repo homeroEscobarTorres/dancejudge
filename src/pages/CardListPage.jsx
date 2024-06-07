@@ -591,6 +591,7 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
       .then((res) => {
         if (res.data) {
           const batterie = groupElementsByBatteryNumber(res.data);
+          onUpdateBatteryList(batterie);
           sendDataToParent(false);
           setValueCards(batterie['1']);
           calcMaxVotes(batterie['1'].length);
@@ -671,7 +672,6 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
             duration: 0,
           });
           sendDataToParent(false);
-          onUpdateBatteryList(res.data);
           navigate('/info');
         }
       });
@@ -684,7 +684,6 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
     //       duration: 0,
     //     });
     //     sendDataToParent(false);
-    //     onUpdateBatteryList(batteria2.data);
     //     navigate('/info');
     //   }
     // }, 3000);
