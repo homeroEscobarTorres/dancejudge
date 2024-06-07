@@ -579,7 +579,7 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
   };
 
   const loadBatteries = () => {
-    if (batteryList.length > 0) {
+    if (batteryList.length === 0) {
       onUpdateLoading(true);
       axios
         .get(`${ENV.baseUrl}/garaCoppia/batterie`, {
