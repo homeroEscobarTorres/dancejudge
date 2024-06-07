@@ -579,7 +579,7 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
   };
 
   const loadBatteries = () => {
-    if (batteryList.length === 0) {
+    if (batteryList?.length === 0) {
       onUpdateLoading(true);
       axios
         .get(`${ENV.baseUrl}/garaCoppia/batterie`, {
@@ -600,12 +600,11 @@ const CardListPage = ({onUpdateLoading, onUpdateBatteryList, batteryList, primar
           }
         });
     } else {
-      const batterie = groupElementsByBatteryNumber(batteryList);
-      onUpdateBatteryList(batterie);
+      onUpdateBatteryList(batteryList);
       sendDataToParent(false);
-      setValueCards(batterie['1']);
-      calcMaxVotes(batterie['1'].length);
-      setTitleCard(`You're judging battery number ${Object.keys(batterie)[0]}`);
+      setValueCards(batteryList['1']);
+      calcMaxVotes(batteryList['1'].length);
+      setTitleCard(`You're judging battery number ${batteryList[0].numeroBatteria}`);
     }
 
     // setTimeout(() => {
